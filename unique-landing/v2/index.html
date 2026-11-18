@@ -65,7 +65,7 @@ svg.i{display:inline-block;fill:currentColor}
 .A .rimg{width:255px;aspect-ratio:4/5;background-size:cover;background-position:center;margin:0 auto}
 
 /* ===== B · dark, full-bleed bar ===== */
-.B{--bg:#333F48;--spine:#E9E5DA;--line:#E9E5DA;--ink:#EDE0BA;color:var(--cream-txt)}
+.B{--bg:#333F48;--spine:#E9E5DA99;--line:#E9E5DA99;--ink:#EDE0BA;color:var(--cream-txt)}
 .B .t-head{border-color:var(--line)}
 .B .p{color:#EFE8D8cc}
 .B .bar{display:flex;height:380px;gap:1px;background:var(--bg);margin-top:0;border-radius:0 0 64px 0;overflow:hidden}
@@ -138,6 +138,7 @@ svg.i{display:inline-block;fill:currentColor}
 .B .hg .ht:nth-child(3n){border-left:0}
 .B .hg .ht:nth-child(-n+3){border-top:0}
 .B .hg .ht small{display:block;font-size:10.5px;margin-top:4px}
+.B .hg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#E9E5DA99;pointer-events:none}
 .B .hf{padding:34px 24px 46px;text-align:center;background:var(--hc,#333F48);color:var(--hi,#fff);transition:background .9s ease,color .6s}
 .B .hf .lab{font-size:11px;opacity:.9}
 .B .hf .word{margin-top:16px;font-size:50px;letter-spacing:.12em;padding-left:.12em}
@@ -184,16 +185,16 @@ svg.i{display:inline-block;fill:currentColor}
 .B .pl .ti b,.B .pl .tr .tt b,.B .pl .tr .tt small,.B .pl .tr .n,.B .pl .tm,.B .pl .ti small{color:#E9E5DA}
 .B .t-foot,.B .t-foot small{color:#E9E5DA}
 .B .t-foot svg{color:#E9E5DA}
-.B .t-foot hr{border-color:#E9E5DA40}
+.B .t-foot hr{border-color:#E9E5DA99}
 .B .video{color:#E9E5DA}
 .B .btn{color:#E9E5DA}
 .B .video .play{border-color:#E9E5DA99}
 .B .flow{--g:104px}
 .B .t-head svg{color:#E9E5DA}
-.B .bgrid{border-top:1px solid #E9E5DA;border-bottom:1px solid #E9E5DA}
-.B .bgrid .c{border-bottom:1px solid #E9E5DA;padding:32px 12px 28px}
+.B .bgrid{border-top:1px solid #E9E5DA99;border-bottom:1px solid #E9E5DA99}
+.B .bgrid .c{border-bottom:1px solid #E9E5DA99;padding:32px 12px 28px}
 .B .bgrid .c:nth-last-child(-n+2){border-bottom:0}
-.B .bgrid .c:nth-child(odd){border-left:1px solid #E9E5DA}
+.B .bgrid .c:nth-child(odd){border-left:1px solid #E9E5DA99}
 .phone-frame{width:375px;height:812px;border:0;border-radius:28px;box-shadow:0 15px 40px #0000001F;background:#E9E5DA;display:block;overflow:hidden}
 .opt-tabs{max-width:1240px;margin:0 auto 28px;display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:1px solid #F8CCD6}
 .opt-tabs button{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:14px 18px;font:400 16px Simpler,Arial;color:#999;cursor:pointer;white-space:nowrap}
@@ -281,7 +282,7 @@ svg.i{display:inline-block;fill:currentColor}
         <div class="body">לצד המראה המרשים, <span class="lt">UNIQUE</span> מציגה גם ביצועים גבוהים, המאפשרים ליהנות משילוב מדויק בין אסתטיקה מוקפדת לביצועים מתקדמים, לאורך זמן.</div>
       </span>
       <div class="gap"></div>
-      <span class="tx" style="border-top:1px solid #E9E5DA;padding:46px 28px 14px"><div class="h2" style="font-size:28px;line-height:1.18">הייחודיות של UNIQUE</div></span>
+      <span class="tx" style="border-top:1px solid #E9E5DA99;padding:46px 28px 14px"><div class="h2" style="font-size:28px;line-height:1.18">הייחודיות של UNIQUE</div></span>
       <div class="gap" style="--g:36px"></div>
       <div class="bgrid" id="bBens"></div>
       <div class="gap" style="--g:24px"></div>
@@ -462,7 +463,7 @@ tabs.onclick=e=>{const b=e.target.closest('button');if(!b)return;selectRit(+b.da
     for(let k=0;k<9;k++){
       if(k===pa)h+=`<div class="ht" style="background:${rep[1]};color:${ink2(rep[1])}"><svg class="tmk" viewBox="0 0 120 120"><use href="#mark"/></svg><span class="nm">${rep[0]}</span><small>${rep[2]}</small></div>`;
       else if(k===pb)h+=`<div class="ht" style="background:${other[1]};color:${ink2(other[1])}"><svg class="tmk" viewBox="0 0 120 120"><use href="#mark"/></svg><span class="nm">${other[0]}</span><small>${other[2]}</small></div>`;
-      else if(k===pc)h+=`<div class="ht" style="background:${soft[1]}99"></div>`;
+      else if(k===pc)h+=`<div class="ht" style="background:${soft[1]}59"></div>`;
       else h+='<div class="ht"></div>';
     }
     grid.innerHTML=h;

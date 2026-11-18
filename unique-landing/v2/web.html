@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>יוניק · v2 · ווב</title>
+<style>
+@font-face{font-family:Simpler;src:url(assets/Simpler-Light.otf);font-weight:300}
+@font-face{font-family:Simpler;src:url(assets/Simpler-Regular.otf);font-weight:400}
+@font-face{font-family:Simpler;src:url(assets/Simpler-Bold.otf);font-weight:700}
+@font-face{font-family:Simpler;src:url(assets/Simpler-Black.otf);font-weight:900}
+:root{--bg:#333F48;--cream:#E9E5DA;--line:#E9E5DA99;--foot:#262F36;--red:#DB0032;--red-h:#C2002C;
+  --serif:Optima,'Optima Nova','Optima LT',Candara,'Segoe UI',sans-serif;--r:94px;--max:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Simpler,Heebo,Arial,sans-serif;font-weight:300;background:var(--bg);color:var(--cream)}
+svg.i{display:inline-block;fill:currentColor}
+.latin{font-family:var(--serif);font-weight:300;letter-spacing:.2em;text-transform:uppercase}
+.ital{font-family:var(--serif);font-style:italic;font-weight:300;letter-spacing:.02em}
+.lt0,.lt{unicode-bidi:isolate;direction:ltr;display:inline-block;letter-spacing:.03em}
+
+/* header */
+.head{position:sticky;top:0;z-index:30;height:72px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.head svg{width:110px;height:21px;color:var(--cream)}
+
+/* leading line: every segment 80px, touching the sections above and below */
+.gap{height:80px;position:relative;background:var(--bg)}
+.gap::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+.gap.nl::after{display:none}
+.sp{height:var(--g,40px)}
+
+/* hero */
+.hero{position:relative;border-radius:0 0 var(--r) 0;overflow:hidden;background:#000}
+/* Tambour-site grid: wide side areas, a block of square cells in the centre; row lines run across the full width */
+/* sizes measured on tambour.co.il: rem and cell follow the site (7 cells across the content area, hero = header + 4 cells) */
+:root{--rem:10px;--gutter:max(10*var(--rem),(100% - 124*var(--rem))/2)}
+.hero{container-type:inline-size;display:flex;flex-direction:column}
+.hero>*{--s:calc((100cqw - 20*var(--rem))/7)}
+@media(min-width:1441px){.hero>*{--s:calc(124*var(--rem)/7)}}
+@media(max-width:767px){.hero>*{--s:calc(100cqw/7)}}
+@media(min-width:1200px) and (max-width:1699px){:root{--rem:10px}}
+@media(min-width:1000px) and (max-width:1199px){:root{--rem:8px}}
+@media(min-width:768px) and (max-width:999px){:root{--rem:6.4px}}
+@media(min-width:1700px){:root{--rem:12px}}
+.hb{position:relative;flex:none;height:calc(var(--s)*var(--rows,3))}
+.hrows{position:absolute;inset:0;z-index:3;pointer-events:none;display:grid;grid-template-rows:repeat(var(--rows,3),var(--s));transition:opacity .4s}
+.hrows i{border-bottom:1px solid var(--line)}
+.him{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
+.him.on{opacity:1}
+.hg{position:absolute;top:0;height:calc(var(--s)*var(--rows,3));left:50%;width:calc(var(--s)*7);transform:translateX(-50%);z-index:2;border-left:1px solid var(--line);border-right:1px solid var(--line);display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(var(--rows,3),var(--s));transition:opacity .4s;direction:ltr}
+.ht{border-left:1px solid var(--line);padding:calc(var(--s)*.065);display:flex;flex-direction:column;justify-content:flex-end;text-align:left;transition:background .6s;overflow:hidden}
+.ht:nth-child(7n+1){border-left:0}
+.ht:nth-child(-n+7){border-top:0}
+.tmk{width:calc(var(--s)*.08);height:calc(var(--s)*.08);fill:currentColor;display:block;margin-bottom:calc(var(--s)*.04);flex:none}
+.ht .nm{display:block;font-size:calc(var(--s)*.068);line-height:1.12;font-weight:700;text-transform:uppercase;overflow-wrap:anywhere}
+.ht small{display:block;font-size:calc(var(--s)*.056);font-weight:700;margin-top:calc(var(--s)*.03);letter-spacing:.03em}
+.hf{flex:none;height:calc(var(--s)*1.2);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px 24px;text-align:center;background:var(--hc,#333F48);color:var(--hi,var(--cream));transition:background .9s ease,color .6s}
+.hf .lab{font-size:calc(var(--s)*.07)}
+.ulogo{display:block;fill:currentColor;height:auto}
+.ulogo.big{width:calc(var(--s)*2.1);max-width:80%;margin:calc(var(--s)*.12) auto 0}
+.ulogo.sm{width:240px;margin:0 auto}
+
+/* intro */
+.intro{text-align:center;padding:56px 24px;background:var(--bg)}
+.intro>*{width:100%;max-width:600px;margin-inline:auto;text-wrap:balance}
+.intro .t-h{font-size:40px;font-weight:300;line-height:1.18;letter-spacing:-.005em}
+.intro .lead{font-size:26px;line-height:1.5;margin-top:32px;margin-bottom:0}
+.intro .body{font-size:19px;line-height:1.75;opacity:.8;margin-top:32px;margin-bottom:0}
+.intro .body+.body{margin-top:20px}
+
+/* benefits */
+.uh{border-top:1px solid var(--line);text-align:center;padding:64px 24px 18px;font-size:40px;line-height:1.18;background:var(--bg)}
+.bgrid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg);margin:36px 0 0;padding:0 var(--gutter)}
+.bgrid::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;background:linear-gradient(var(--line),var(--line)) 0 50%/100% 1px no-repeat}
+.bgrid .c{padding:44px 20px 40px;text-align:center;border-left:1px solid var(--line)}
+.bgrid .c:nth-child(3n){border-left:0}
+.bgrid .c svg{width:56px;height:56px;fill:none;stroke:var(--cream);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block;margin:0 auto 18px}
+.bgrid .c b{font-weight:300;font-size:22px;line-height:1.25;display:block}
+.t82{text-align:center;padding:26px 24px;background:var(--bg)}
+.t82 .a{font-size:40px;line-height:1.18;letter-spacing:-.005em}
+.t82 .b{font-size:24px;line-height:1.6;margin-top:8px}
+
+/* rituals */
+.ritb{margin:0 var(--gutter);position:relative;border-radius:0 0 var(--r) 0;overflow:hidden;background:var(--bg)}
+.imgs{position:relative;width:100%;height:min(46vw,560px);min-height:360px;background:#000}
+.im{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.1s ease}
+.im.on{opacity:1}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:96px calc(2.4*var(--rem)) 36px;background:linear-gradient(#0000,#000000a8);color:var(--cream);text-align:right;transition:opacity .4s}
+.cap .latin{font-size:13px;display:block;direction:ltr;text-align:right}
+.cap .nm{font-size:48px;line-height:1.1;margin-top:10px}
+.cap .ital{font-size:22px;opacity:.9;margin-top:8px}
+.dots{position:absolute;top:24px;left:calc(2.4*var(--rem));right:calc(2.4*var(--rem));display:flex;gap:6px;z-index:2}
+.dots button{flex:1;height:16px;background:none;border:0;cursor:pointer;position:relative}
+.dots button::after{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:#E9E5DA66}
+.dots button.on::after{background:var(--cream)}
+.tiles{width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding-top:0;background:var(--bg);transition:opacity .35s}
+.tile{position:relative;aspect-ratio:1;padding:calc(1.2*var(--rem));display:flex;flex-direction:column;justify-content:flex-end;direction:ltr;text-align:left;font-weight:900;text-transform:uppercase;font-size:calc(1.6*var(--rem));line-height:calc(1.8*var(--rem));letter-spacing:.003em;cursor:pointer;transition:border-radius .25s ease}
+.tile small{font-size:calc(1.4*var(--rem));line-height:calc(1.4*var(--rem));font-weight:900;margin-top:calc(.8*var(--rem));display:block;letter-spacing:.01em}
+.acts{position:absolute;top:calc(1.2*var(--rem));right:calc(1.2*var(--rem));direction:rtl;display:flex;flex-direction:column;gap:calc(.8*var(--rem));align-items:flex-start;text-transform:none;font-weight:400}
+.acts span{display:flex;align-items:center;gap:calc(.8*var(--rem));font-size:calc(1.4*var(--rem));line-height:1}
+.acts svg{width:calc(2.4*var(--rem));height:calc(2.4*var(--rem));flex:none;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.acts em{font-style:normal;opacity:0;transition:opacity .2s;white-space:nowrap}
+.tile.edge{box-shadow:inset .5px 0 0 var(--line),inset 0 -.5px 0 var(--line)}
+.tile:hover,.tile.on{border-bottom-right-radius:44px}
+.tile:hover .acts em,.tile.on .acts em{opacity:1}
+
+/* video placeholder */
+.video{width:calc(100% - 2*var(--gutter));aspect-ratio:16/9;margin:0 auto;border-radius:0 0 var(--r) 0;overflow:hidden;background:linear-gradient(160deg,#4A5963,#232C33);display:flex;align-items:center;justify-content:center;color:var(--cream)}
+.video .play{width:84px;height:84px;border-radius:50%;border:1px solid #E9E5DA99;display:flex;align-items:center;justify-content:center}
+.video .play svg{width:22px;height:24px;margin-right:-4px}
+
+/* CTA */
+.cta{text-align:center;background:var(--bg);padding:56px 24px 0}
+.btn{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;background:var(--red);color:var(--cream);border-radius:4px;font:400 18px Simpler,Arial;text-decoration:none;transition:background .2s}
+.btn:hover{background:var(--red-h)}.btn svg{width:26px;height:26px}
+.ctail{height:96px;background:var(--bg)}
+
+/* footer */
+.foot{background:var(--foot);color:var(--cream);padding:48px var(--gutter) 40px}
+.foot svg{width:130px;height:25px;color:var(--cream)}
+.foot hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.foot .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;line-height:2;opacity:.85}
+
+@media(max-width:1000px){
+  .bgrid{grid-template-columns:repeat(2,1fr)}
+  .bgrid::before{background:linear-gradient(var(--line),var(--line)) 0 33.333%/100% 1px no-repeat,linear-gradient(var(--line),var(--line)) 0 66.666%/100% 1px no-repeat}
+  .bgrid .c:nth-child(3n){border-left:1px solid var(--line)}
+  .bgrid .c:nth-child(2n){border-left:0}
+
+  .intro .t-h{font-size:40px}
+}
+@media(max-width:767px){.ritb{margin:0}.tiles{grid-template-columns:repeat(3,1fr)}}
+/* small screens: 5 full squares in the middle, one wide edge cell on each side that runs to the screen edge */
+@media(max-width:1440px){.hg{left:0;width:100%;transform:none;border-left:0;border-right:0;grid-template-columns:1fr repeat(5,var(--s)) 1fr}}
+/* the whole grid, row lines included, fades while the pictures change (like the mobile page) */
+.hb.sw .hrows{opacity:0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="ulogo" viewBox="93.8 237.7 1013.2 246.1"><path d="M234.8,347c-0.2,6.6-0.8,13.3-1.9,19.9c-1.1,6.6-2.8,13-5.2,19.1c-2.4,6.1-5.8,11.5-10.1,16.1c-4.3,4.7-9.8,8.4-16.5,11.3 c-6.7,2.9-15,4.3-24.9,4.3c-10,0-18.5-1.2-25.3-3.6c-6.8-2.4-12.5-5.7-17-10c-4.5-4.2-7.9-9.1-10.4-14.8 c-2.4-5.7-4.2-11.6-5.2-17.8c-1.1-6.2-1.7-12.6-1.9-19.1c-0.2-6.5-0.3-12.9-0.3-19c0-10,0.1-19.7,0.3-29.1c0.2-9.3,0.4-18,0.8-26.1 c0.4-8.1,0.7-15.3,1.1-21.7c0.4-6.4,0.7-11.5,1.1-15.5c-2,0.4-3.9,0.7-5.8,0.9c-1.9,0.3-3.8,0.4-5.8,0.4c-2.2,0-4.5-0.1-7-0.4 c-2.5-0.3-4.8-0.6-7-0.9c0.4,8.1,0.7,17.9,1.1,29.6c0.4,11.7,0.5,25,0.5,40.1c0,6.8-0.2,13.5-0.7,20c-0.4,6.6-0.7,14-0.7,22.5 c0,26.4,6.1,45.7,18.3,57.9c12.2,12.2,31.8,18.3,58.7,18.3c12.2,0,23-1.7,32.4-5.1s17.4-8.4,23.8-15.1c6.5-6.6,11.4-14.7,14.9-24.2 c3.5-9.5,5.3-20.3,5.5-32.3c0.2-9.9,0.4-20,0.8-30.5c0.4-10.5,0.7-20.7,1.1-30.7c0.4-10,0.8-19.3,1.3-28c0.5-8.7,1.1-16.2,1.6-22.5 c-3.1,0.9-5.7,1.3-8.1,1.3c-1.8,0-3.6-0.1-5.4-0.4c-1.8-0.3-3.7-0.6-5.7-0.9c0.7,5.2,1.2,14.7,1.3,28.5c0.2,13.8,0.3,33.5,0.3,58.9 C235,334.3,235,340.4,234.8,347"/><path d="M450.6,429.6h3.8v-8.9c0-4.3,0-9.4-0.1-15.2c-0.1-5.8-0.2-12.1-0.3-18.8c-0.1-6.7-0.2-13.4-0.3-20 c-0.1-6.6-0.1-13-0.1-19.1v-16.1c0-5.2,0.2-12.1,0.5-20.7c0.4-8.6,0.8-17.4,1.2-26.4c0.4-9,0.9-17.4,1.3-25.3 c0.4-7.9,0.8-13.8,1.2-17.8c-3.6,0.9-6.5,1.3-8.6,1.3c-2.5,0-5.6-0.4-9.1-1.3c0.9,15.8,1.5,32.6,1.7,50.5c0.3,17.9,0.4,36.2,0.4,55 v36.6c-8.3-8.2-17.9-18.2-28.9-30c-11-11.7-22.7-24.2-35-37.4c-12.3-13.2-24.7-26.5-37.1-40.1c-12.5-13.5-24.2-26.2-35.1-38.1h-4.3 c0.4,6.1,0.6,15.3,0.7,27.7c0.1,12.4,0.1,27.2,0.1,44.4c0,5.9-0.1,12.6-0.3,20.2c-0.2,7.5-0.4,15.3-0.7,23.1 c-0.3,7.9-0.6,15.8-1.1,23.7c-0.4,7.9-0.9,15.2-1.2,21.9c-0.4,6.7-0.8,12.5-1.2,17.4c-0.4,4.8-0.9,8.2-1.2,10c3-0.4,6.4-0.5,10-0.5 c3.4,0,6.5,0.2,9.4,0.5c-0.2-1.4-0.4-4.2-0.5-8.2c-0.2-4-0.4-8.7-0.5-14.1c-0.2-5.4-0.4-11.2-0.5-17.5c-0.2-6.3-0.3-12.5-0.4-18.6 c-0.1-6.1-0.2-11.9-0.3-17.5c-0.1-5.6-0.1-10.2-0.1-14c0-14.5,0.1-26,0.3-34.4c0.2-8.4,0.4-15.2,0.5-20.2 c23.3,24.8,46.6,49.6,70,74.7C408,381.3,430,405.8,450.6,429.6"/><path d="M506.5,311v46.3c0,11.8-0.2,23.5-0.7,35c-0.4,11.5-0.9,22.8-1.5,33.9c4.1-0.4,8.5-0.5,13.2-0.5c4.7,0,9.1,0.2,13.2,0.5 c-0.5-11.1-1-22.4-1.5-33.9c-0.5-11.5-0.7-23.1-0.7-35V311c0-11.8,0.2-23.5,0.7-34.8c0.4-11.4,0.9-23,1.5-34.8 c-2.3,0.4-4.6,0.7-6.7,0.9c-2.2,0.3-4.3,0.4-6.5,0.4c-2.2,0-4.3-0.1-6.5-0.4c-2.2-0.3-4.4-0.6-6.7-0.9c0.5,11.8,1,23.5,1.5,34.8 C506.3,287.5,506.5,299.1,506.5,311"/><path d="M744.2,334.1c0,14.9-1.9,27.8-5.7,38.6c-3.8,10.9-9,19.8-15.7,26.9c-6.7,7.1-14.6,12.3-23.7,15.7 c-9.1,3.4-18.9,5.1-29.5,5.1c-10.4,0-20.1-1.7-29.2-5.1c-9.1-3.4-17-8.7-23.7-15.7c-6.7-7.1-12-16.1-15.7-26.9 c-3.8-10.9-5.7-23.7-5.7-38.6c0-14.9,1.9-27.8,5.7-38.6c3.8-10.8,9-19.8,15.7-26.9c6.7-7.1,14.6-12.3,23.7-15.7 c9.1-3.4,18.8-5.1,29.2-5.1c10.6,0,20.4,1.7,29.5,5.1c9.1,3.4,17,8.7,23.7,15.7c6.7,7.1,12,16.1,15.7,26.9 C742.3,306.4,744.2,319.2,744.2,334.1 M770.5,334.1c0-15.2-2.5-28.8-7.4-40.8c-4.9-11.9-11.8-22-20.7-30.3 c-8.9-8.2-19.5-14.5-31.9-18.8c-12.4-4.3-26-6.5-40.9-6.5c-14.7,0-28.3,2.2-40.6,6.5c-12.4,4.3-23,10.6-31.9,18.8 c-8.9,8.3-15.8,18.3-20.7,30.3c-4.9,11.9-7.4,25.5-7.4,40.8c0,15.3,2.5,28.8,7.4,40.8c4.9,11.9,11.8,22,20.7,30.3 c8.9,8.3,19.5,14.4,31.9,18.4c12.4,4,25.9,6.1,40.6,6.1h3.8c1.8,0,3.1-0.1,4-0.3c11.3,9.1,22,18.2,32,27.2c10,9,20,18,29.9,27.2 c1.4-2.3,4.1-4.7,8.1-7c3.9-2.3,8.2-3.7,12.9-4c-10.9-7.7-21.4-15.4-31.3-23.1c-10-7.7-19.8-15.4-29.5-23.1 c10.8-2,20.5-5.6,29.2-10.8c8.7-5.2,16.1-11.8,22.3-19.8c6.2-8,11-17.1,14.4-27.4C768.8,358.1,770.5,346.7,770.5,334.1"/><path d="M948.1,347c-0.2,6.6-0.8,13.3-1.9,19.9c-1.1,6.6-2.8,13-5.2,19.1c-2.4,6.1-5.8,11.5-10.1,16.1c-4.3,4.7-9.8,8.4-16.5,11.3 c-6.7,2.9-15,4.3-24.9,4.3c-10,0-18.5-1.2-25.3-3.6c-6.8-2.4-12.5-5.7-17-10c-4.5-4.2-7.9-9.1-10.4-14.8s-4.2-11.6-5.2-17.8 s-1.7-12.6-1.9-19.1c-0.2-6.5-0.3-12.9-0.3-19c0-10,0.1-19.7,0.3-29.1c0.2-9.3,0.4-18,0.8-26.1c0.4-8.1,0.7-15.3,1.1-21.7 c0.4-6.4,0.7-11.5,1.1-15.5c-2,0.4-3.9,0.7-5.8,0.9c-1.9,0.3-3.8,0.4-5.8,0.4c-2.2,0-4.5-0.1-7-0.4c-2.5-0.3-4.8-0.6-7-0.9 c0.4,8.1,0.7,17.9,1.1,29.6c0.4,11.7,0.5,25,0.5,40.1c0,6.8-0.2,13.5-0.7,20c-0.4,6.6-0.7,14-0.7,22.5c0,26.4,6.1,45.7,18.3,57.9 c12.2,12.2,31.8,18.3,58.7,18.3c12.2,0,23-1.7,32.4-5.1c9.4-3.4,17.4-8.4,23.8-15.1c6.5-6.6,11.4-14.7,14.9-24.2 c3.5-9.5,5.3-20.3,5.5-32.3c0.2-9.9,0.4-20,0.8-30.5c0.4-10.5,0.7-20.7,1.1-30.7c0.4-10,0.8-19.3,1.3-28c0.5-8.7,1.1-16.2,1.6-22.5 c-3.1,0.9-5.7,1.3-8.1,1.3c-1.8,0-3.6-0.1-5.4-0.4c-1.8-0.3-3.7-0.6-5.7-0.9c0.7,5.2,1.2,14.7,1.3,28.5c0.2,13.8,0.3,33.5,0.3,58.9 C948.4,334.3,948.3,340.4,948.1,347"/><path d="M1011.7,310.7V357c0,11.8-0.2,23.5-0.7,34.8c-0.4,11.4-0.9,22.8-1.5,34.3c8.2-0.4,16.4-0.5,24.5-0.5h24.5h24.4 c8,0,16,0.2,24.1,0.5c-0.5-1.8-0.8-4.1-0.8-7c0-1.3,0-2.6,0.1-4.2c0.1-1.5,0.3-2.9,0.7-4.2c-4.3,0.9-9.4,1.6-15.2,2 c-5.8,0.4-12,0.8-18.6,1.1c-6.6,0.3-13.2,0.4-20,0.4h-18.8c-0.2-3.4-0.3-8.4-0.4-15.1c-0.1-6.6-0.1-15.1-0.1-25.3v-16.1v-10.5 c0-2.9,0-5.2,0.1-7.1c0.1-1.9,0.1-3.6,0.1-5.2c3.2,0,7.6,0,13,0.1c5.5,0.1,11.3,0.2,17.5,0.3c6.2,0.1,12.4,0.3,18.6,0.7 c6.2,0.4,11.6,0.8,16.3,1.3c-0.5-2.7-0.8-5.4-0.8-8.1c0-2.9,0.3-5.7,0.8-8.3c-3.9,0.4-8.1,0.7-12.5,0.9c-4.4,0.3-9.2,0.5-14.4,0.8 c-5.2,0.3-10.9,0.5-17.2,0.7c-6.3,0.2-13.4,0.3-21.3,0.3c0-3.4,0-8.4-0.1-15.1c-0.1-6.6-0.1-13.5-0.1-20.4c0-6.6,0.1-12.6,0.4-17.8 c0.3-5.2,0.5-10.7,0.7-16.4c8.8,0,16.3,0.1,22.6,0.4c6.3,0.3,12.1,0.6,17.4,0.9c5.3,0.4,10.3,0.7,15.1,1.1c4.8,0.4,10,0.7,15.7,1.1 c-0.5-2.7-0.8-5.4-0.8-8.1c0-2.7,0.3-5.4,0.8-8.1c-8.1,0.4-16.1,0.7-23.9,0.9c-7.9,0.3-15.9,0.4-23.9,0.4s-16.1-0.1-24.1-0.4 c-8-0.3-16-0.6-24.1-0.9c0.5,11.5,1,23,1.5,34.4C1011.4,287.2,1011.7,298.9,1011.7,310.7"/></symbol>
+<symbol id="logo" viewBox="0 0 627 120"><path d="M0 119.791H69.8225C97.2878 119.791 119.625 97.2884 119.625 69.6578V0.000652889H40.5372V39.5446H80.4118V80.2471H39.7092V40.7032H0V119.791Z"/><path d="M462.063 108.368C494.823 108.864 510.211 92.1536 510.211 57.9043C510.211 26.4671 495.981 11.4111 465.868 11.4111H406.47V108.203H439.892V41.5244H476.458V78.0896H451.804V108.203L462.063 108.368ZM211.066 108.203H244.489V47.9763C244.489 25.3097 229.929 11.4111 208.089 11.4111H157.625V41.5244H211.066V108.203ZM258.057 108.203H291.81V11.4111H258.057V108.203ZM305.046 108.203H394.556V78.0896H381.816V47.811C381.816 25.3097 367.422 11.4111 345.582 11.4111H305.046V41.5244H348.395V78.0896H305.046V108.203ZM522.785 108.368H585.824C607.995 108.368 626.194 90.1682 626.194 67.831V11.4111H568.12V41.5244H592.773V78.0896H556.207V11.4111H522.785V108.368Z"/></symbol>
+<symbol id="mark" viewBox="0 0 120 120"><path d="M0 119.791H69.8225C97.2878 119.791 119.625 97.2884 119.625 69.6578V0.000652889H40.5372V39.5446H80.4118V80.2471H39.7092V40.7032H0V119.791Z"/></symbol>
+<symbol id="i-depth" viewBox="0 0 48 48"><rect x="8" y="29" width="5" height="11"/><rect x="17" y="22" width="5" height="18"/><rect x="26" y="15" width="5" height="25"/><rect x="35" y="8" width="5" height="32" fill="currentColor"/></symbol>
+<symbol id="i-rich" viewBox="0 0 48 48"><circle cx="18" cy="19" r="11"/><circle cx="30" cy="19" r="11"/><circle cx="24" cy="30" r="11"/></symbol>
+<symbol id="i-velvet" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2"/><path d="M8 16A8 8 0 0 0 16 8"/><path d="M8 23A15 15 0 0 0 23 8"/><path d="M8 30A22 22 0 0 0 30 8"/></symbol>
+<symbol id="i-cover" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2"/><path d="M19.5 8H40V28.5Z" fill="currentColor"/></symbol>
+<symbol id="i-stain" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2"/><path fill="currentColor" transform="translate(19 19) scale(0.95) translate(-18 -18)" d="M18 11C18.7 15.3 20.7 17.3 25 18C20.7 18.7 18.7 20.7 18 25C17.3 20.7 15.3 18.7 11 18C15.3 17.3 17.3 15.3 18 11Z"/><path fill="currentColor" transform="translate(31.5 31.5) scale(0.6) translate(-18 -18)" d="M18 11C18.7 15.3 20.7 17.3 25 18C20.7 18.7 18.7 20.7 18 25C17.3 20.7 15.3 18.7 11 18C15.3 17.3 17.3 15.3 18 11Z"/></symbol>
+<symbol id="i-durable" viewBox="0 0 48 48"><path d="M24 8L38 13V24C38 32 32 38 24 41C16 38 10 32 10 24V13Z"/><path d="M18 19L29 32"/><path d="M23 16L34 29"/></symbol>
+<symbol id="arrow" viewBox="0 0 32 32"><path d="M21 11 11 21M11 12.5V21h8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="play" viewBox="0 0 14.7826 16.6304"><path d="M12.3118 8.31522L1.21134 2.07121V14.5592L12.3118 8.31522Z" fill="none" stroke="currentColor" stroke-width="2.42269"/></symbol>
+
+</svg>
+
+<header class="head"><svg class="i" viewBox="0 0 627 120"><use href="#logo"/></svg></header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="hb" id="hb"><div class="hg" id="hGrid"></div></div>
+    <div class="hf" id="hFoot">
+      <div class="lab latin">Chromafuse™ Technology</div>
+      <svg class="ulogo big" viewBox="0 0 1013.2 246.1" role="img" aria-label="UNIQUE"><use href="#ulogo"/></svg>
+    </div>
+  </section>
+  <div class="gap"></div>
+
+  <section class="intro">
+    <div class="t-h">הכירו את <span class="lt0">UNIQUE</span>,<br>צבע הפרימיום החדש מבית טמבור</div>
+    <p class="lead">שנולד כדי להעניק לקירות נוכחות יוצאת דופן ולחללים מראה יוקרתי, עמוק ומלא אופי.</p>
+    <p class="body">בזכות טכנולוגיית <span class="lt">CHROMAFUSE™</span> המתקדמת, מתקבלים גוונים עשירים ועוצמתיים בגימור קטיפתי אלגנטי (<span class="lt">Eggshell</span>), שמעניק לכל קיר ביטוי ייחודי.</p>
+    <p class="body">לצד המראה המרשים, <span class="lt">UNIQUE</span> מציגה גם ביצועים גבוהים, המאפשרים ליהנות משילוב מדויק בין אסתטיקה מוקפדת לביצועים מתקדמים, לאורך זמן.</p>
+  </section>
+  <div class="gap"></div>
+
+  <div class="uh">הייחודיות של UNIQUE</div>
+  <div class="bgrid" id="bBens"></div>
+  <div class="sp" style="--g:24px;background:var(--bg)"></div>
+  <div class="t82"><div class="a">82 גוונים ייחודים ל-UNIQUE</div><div class="b">ניתן לגיוון בכל גווני "המניפה"</div></div>
+  <div class="sp" style="--g:24px;background:var(--bg)"></div>
+
+  <section id="bRit"></section>
+  <div class="gap nl"></div>
+  <div class="video" role="img" aria-label="סרטון (placeholder)"><span class="play"><svg class="i"><use href="#play"/></svg></span></div>
+  <div class="gap"></div>
+
+  <section class="cta">
+    <svg class="ulogo sm" viewBox="0 0 1013.2 246.1" role="img" aria-label="UNIQUE"><use href="#ulogo"/></svg>
+    <div class="sp" style="--g:28px"></div>
+    <a class="btn" href="#">לקולקציית UNIQUE <svg class="i"><use href="#arrow"/></svg></a>
+  </section>
+  <div class="ctail"></div>
+</main>
+
+<footer class="foot">
+  <svg class="i" viewBox="0 0 627 120"><use href="#logo"/></svg>
+  <hr>
+  <div class="row"><span>הצהרת נגישות · תנאי שימוש · הצהרת פרטיות</span><span>© 2026 טמבור כל הזכויות שמורות</span></div>
+</footer>
+
+<script>const R=[{"en": "RED", "n": "אדומים", "rep": ["Red Quarry", "#9C413B"], "c": [["Coral Veil", "#DC6D7B", "UN5001"], ["Jaffa Signal", "#C6373C", "UN5002"], ["Rust Grove", "#C45140", "UN5003"], ["Zest Ritual", "#AD4C44", "UN5004"], ["Red Quarry", "#9C413B", "UN5005"], ["Pomegranate Burst", "#A34454", "UN5006"], ["Terra Carmine", "#864043", "UN5007"], ["Rustic Terracotta", "#904956", "UN5008"], ["Amber Clay", "#6D4A50", "UN5009"]]}, {"en": "BROWN", "n": "חומים", "rep": ["Espresso Macchiato", "#8B634A"], "c": [["Terracotta Blaze", "#C88549", "UN5010"], ["Clay Orchard", "#B86945", "UN5111"], ["Roasted Almond", "#9D7450", "UN5112"], ["Morning Macchiato", "#AC7957", "UN5113"], ["Espresso Macchiato", "#8B634A", "UN5114"], ["Terracotta Harvest", "#846B59", "UN5115"], ["Earthbound Soul", "#804841", "UN5116"], ["Amber Earth", "#945D50", "UN5117"], ["Roasted Bean", "#84533F", "UN5118"], ["Bitter Cacao", "#62473B", "UN5119"], ["Clay Reserve", "#5C4440", "UN5120"], ["Basalt Noir", "#333F48", "UN5121"]]}, {"en": "YELLOW", "n": "צהובים", "rep": ["Golden Pine", "#AA813E"], "c": [["Saffron Heat", "#E4CF7D", "UN5201"], ["Harvest Dust", "#C9B065", "UN5202"], ["Golden Pine", "#AA813E", "UN5203"], ["Olive Soul", "#B58B53", "UN5204"], ["Honey Drip", "#CA9754", "UN5205"], ["Wild Saffron", "#EFB046", "UN5206"], ["Summer Hay", "#E3A752", "UN5207"], ["Sunline", "#F9BF43", "UN5208"], ["Citrus Field", "#FFD651", "UN5209"], ["Solar Flare", "#FFD113", "UN5210"]]}, {"en": "GREEN", "n": "ירוקים", "rep": ["Deep Grove", "#1A5E42"], "c": [["Veranda Green", "#D3CEAD", "UN5301"], ["Morning Aloe", "#D2DDB3", "UN5302"], ["Ancient Pine", "#A4AD9D", "UN5303"], ["Wild Sage Ritual", "#9FA18E", "UN5304"], ["Olive Veil", "#8F8A6D", "UN5305"], ["Forest Line", "#6A6E51", "UN5306"], ["Spring Current", "#798052", "UN5307"], ["Green Pulse", "#658D47", "UN5308"], ["Deep Grove", "#1A5E42", "UN5309"]]}, {"en": "TURQUOISE", "n": "טורקיז", "rep": ["Abyss Blue", "#007A85"], "c": [["Dawn Slate", "#A1BDC3", "UN5401"], ["Spa Escape", "#98C9C3", "UN5402"], ["Wadi Moss", "#6BC5A0", "UN5403"], ["Submerged Reef", "#69B7A8", "UN5404"], ["Harbor Blue", "#45ACB7", "UN5405"], ["Azure Drift", "#1797A3", "UN5406"], ["Abyss Blue", "#007A85", "UN5407"], ["Nocturnal Tide", "#285A6B", "UN5408"], ["Deep Horizon", "#095F6B", "UN5409"]]}, {"en": "BLUE", "n": "כחולים", "rep": ["Electric Wake", "#08689D"], "c": [["Sky Tide", "#66BDD4", "UN5410"], ["Rain Cloud", "#6997B6", "UN5411"], ["Nimbus Cloud", "#6997A6", "UN5412"], ["Sky Ash", "#78A5D1", "UN5413"], ["Blue Current", "#0D92C6", "UN5414"], ["Morning Breeze", "#507FA8", "UN5415"], ["Electric Wake", "#08689D", "UN5416"], ["Indigo Crest", "#495D8D", "UN5417"], ["Night Indigo", "#435F81", "UN5418"], ["Night Swell", "#3E637C", "UN5419"], ["Midnight Trace", "#384756", "UN5420"]]}, {"en": "PURPLE", "n": "סגולים", "rep": ["Midnight Plum", "#4C4355"], "c": [["Bougainvillea Shade", "#E5B1CC", "UN5501"], ["Terrace Hibiscus", "#BD7091", "UN5502"], ["Friday Lavender", "#B191BB", "UN5503"], ["Violet Haze", "#927EA2", "UN5504"], ["Plum Echo", "#6F5C79", "UN5505"], ["Midnight Plum", "#4C4355", "UN5506"], ["Desert Rose", "#D1B9AD", "UN5601"], ["Chilled Rose", "#CFA69B", "UN5602"], ["Friday Peonies", "#ECA2B3", "UN5603"], ["Velvet Macaron", "#D29DA8", "UN5604"], ["Desert Bloom", "#BE8693", "UN5605"], ["Dusk Aperitivo", "#A66B75", "UN5606"], ["Spiced Strawberry", "#B26B77", "UN5607"]]}, {"en": "PASTEL", "n": "פסטל", "rep": ["Raw Silk", "#C6B9A2"], "c": [["Deep Silence", "#E9E5DA", "UN5701"], ["Pale Shadow", "#DDD8CC", "UN5702"], ["Desert Flint", "#CBC8C0", "UN5703"], ["Dusk Trace", "#C7CACB", "UN5704"], ["Steel Sky", "#AAAFB8", "UN5705"], ["Raw Concrete", "#A7A7A4", "UN5706"], ["Desert Dust", "#CCC2B7", "UN5707"], ["Raw Silk", "#C6B9A2", "UN5708"], ["Ancient Clay", "#B5A08A", "UN5709"]]}];
+const IMG=['red','brown','yellow','green','turquoise','blue','purplepink','pastel'];
+const TAG=['Take time to wine down','The patient touch of raw creation','A moment of daily kindness','Freshness of morning dew','Chasing horizons on open water','Finding stillness in a powerful stride','Finding the inner rhythm','A quiet dialogue with early light'];
+</script>
+<script>
+const pad=n=>String(n).padStart(2,'0');
+const url=i=>`url(assets/img/${IMG[i]}.jpg)`;
+const ben=[['i-depth','עומק צבע עצמתי'],['i-rich','גוונים עשירים במיוחד'],['i-velvet','מראה קיר קטיפתי'],['i-cover','כושר הסתרה מעולה'],['i-stain','ניקוי קל והסרה פשוטה של כתמים'],['i-durable','עמידות גבוהה בפני שחיקה ושריטות']];
+document.getElementById('bBens').innerHTML=ben.map(b=>`<div class="c"><svg class="i"><use href="#${b[0]}"/></svg><b>${b[1]}</b></div>`).join('');
+const lum=h=>{const n=parseInt(h.slice(1),16);return (0.299*(n>>16)+0.587*(n>>8&255)+0.114*(n&255))/255};
+const near=h=>{const n=parseInt(h.slice(1),16);return Math.abs((n>>16)-51)+Math.abs((n>>8&255)-63)+Math.abs((n&255)-72)<30};
+const ink=h=>lum(h)>0.62?'#333F48':'#E9E5DA';
+
+// ritual carousel
+(function(){
+  const box=document.getElementById('bRit');let cur=0,timer;
+  box.innerHTML=`<div class="ritb"><div class="imgs">${R.map((r,i)=>`<div class="im${i?'':' on'}" style="background-image:${url(i)}"></div>`).join('')}<div class="dots">${R.map((r,i)=>`<button class="${i?'':'on'}" data-i="${i}" aria-label="${r.n}"></button>`).join('')}</div><div class="cap" id="bCap"></div></div><div class="tiles" id="bTiles"></div></div>`;
+  const ims=[...box.querySelectorAll('.im')],dots=[...box.querySelectorAll('.dots button')],cap=box.querySelector('#bCap'),tiles=box.querySelector('#bTiles');
+  const fill=i=>{const r=R[i];
+    cap.innerHTML=`<span class="latin">${pad(i+1)} · ${r.en}</span><div class="nm">${r.n}</div><div class="ital">${TAG[i]}</div>`;
+    tiles.innerHTML=r.c.map(c=>`<div class="tile${near(c[1])?' edge':''}" style="background:${c[1]};color:${ink(c[1])}"><div class="acts"><span><svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg><em>הזמנת דוגמא</em></span><span><svg viewBox="0 0 24 24"><path d="M12 20.5C5 15 3 11.6 3 8.7A4.7 4.7 0 0 1 7.7 4C9.6 4 11.2 5 12 6.5 12.8 5 14.4 4 16.3 4A4.7 4.7 0 0 1 21 8.7c0 2.9-2 6.3-9 11.8Z"/></svg><em>שמירת גוון</em></span></div>${c[0]}<small>${c[2]}</small></div>`).join('');
+    tiles.querySelectorAll('.tile').forEach(e=>e.onclick=()=>e.classList.toggle('on'));};
+  const show=i=>{cur=i;ims.forEach((e,j)=>e.classList.toggle('on',j===i));dots.forEach((e,j)=>e.classList.toggle('on',j===i));
+    cap.style.opacity=0;tiles.style.opacity=0;setTimeout(()=>{fill(i);cap.style.opacity=1;tiles.style.opacity=1},350)};
+  const start=()=>{clearInterval(timer);timer=setInterval(()=>show((cur+1)%R.length),5000)};
+  dots.forEach(d=>d.onclick=()=>{show(+d.dataset.i);start()});
+  fill(0);start();
+})();
+
+// hero: image + 3x3 grid with shade labels, one family at a time
+(function(){
+  const hb=document.getElementById('hb'),grid=document.getElementById('hGrid'),foot=document.getElementById('hFoot');
+  hb.insertAdjacentHTML('afterbegin',R.map((r,i)=>`<div class="him${i?'':' on'}" style="background-image:${url(i)}"></div>`).join(''));
+  const layers=[...hb.querySelectorAll('.him')];
+  const pat=[[4,6,1],[5,3,7],[7,2,5],[1,8,3],[6,0,4],[3,5,8],[2,6,0],[8,1,4]];
+  let cur=0,rows=3;
+  const sEl=document.createElement('div');sEl.style.cssText='position:absolute;visibility:hidden;width:var(--s);height:0';hb.appendChild(sEl);
+  const hr=document.createElement('div');hr.className='hrows';hb.appendChild(hr);
+  const calcRows=()=>{const s=sEl.getBoundingClientRect().width||175;return Math.max(2,Math.min(3,Math.floor((innerHeight-72)/s-1.2)))};
+  const applyRows=()=>{rows=calcRows();document.querySelector('.hero').style.setProperty('--rows',rows);hr.innerHTML='<i></i>'.repeat(rows)};
+  applyRows();
+  const lab=(c,col)=>`<div class="ht" style="background:${c[1]};color:${ink(c[1])}"><svg class="tmk" viewBox="0 0 120 120"><use href="#mark"/></svg><span class="nm">${c[0]}</span><small>${c[2]}</small></div>`;
+  const fill=i=>{const r=R[i],len=r.c.length;
+    const rep=r.c.find(c=>c[0].toLowerCase()===r.rep[0].toLowerCase())||r.c[0];
+    const other=r.c[(i*3+4)%len],soft=r.c[(i*5+7)%len];
+    const narrow=matchMedia('(max-width:1440px)').matches,pool=[...Array(rows*7).keys()].filter(k=>!narrow||(k%7>0&&k%7<6)).sort(()=>Math.random()-.5),pick=[];for(const k of pool){if(pick.length<3&&!pick.some(p=>p%7===k%7||(Math.floor(p/7)===Math.floor(k/7)&&Math.abs(p%7-k%7)<2)))pick.push(k)}const [pa,pb,pc]=pick;let h='';
+    for(let k=0;k<rows*7;k++){
+      if(k===pa)h+=lab(rep);else if(k===pb)h+=lab(other);
+      else if(k===pc)h+=`<div class="ht" style="background:${soft[1]}59"></div>`;
+      else h+='<div class="ht"></div>';}
+    grid.innerHTML=h;foot.style.setProperty('--hc',rep[1]);foot.style.setProperty('--hi',ink(rep[1]));
+    };
+  const show=i=>{cur=i;layers.forEach((e,j)=>e.classList.toggle('on',j===i));grid.style.opacity=0;hb.classList.add('sw');setTimeout(()=>{fill(i);grid.style.opacity=1;hb.classList.remove('sw')},380)};
+  fill(0);
+  let wasNarrow=matchMedia('(max-width:1440px)').matches;
+  addEventListener('resize',()=>{const o=rows,n=matchMedia('(max-width:1440px)').matches;applyRows();if(rows!==o||n!==wasNarrow){wasNarrow=n;fill(cur)}});
+  setInterval(()=>show((cur+1)%R.length),4500);
+})();
+</script>
+</body>
+</html>
